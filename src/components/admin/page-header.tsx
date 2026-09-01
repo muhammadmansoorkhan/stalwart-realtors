@@ -1,0 +1,3 @@
+export function AdminPageHeader({ eyebrow, title, description, actions }: { eyebrow: string; title: string; description?: string; actions?: React.ReactNode }) {
+  return <div className="mb-8 flex flex-col gap-5 border-b border-deep-olive/12 pb-7 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-[0.66rem] font-bold tracking-[0.16em] text-deep-olive uppercase">{eyebrow}</p><h1 className="mt-2 font-heading text-4xl text-charcoal sm:text-5xl">{title}</h1>{description ? <p className="mt-3 max-w-2xl text-sm leading-7 text-charcoal/55">{description}</p> : null}</div>{actions ? <div className="shrink-0">{actions}</div> : null}</div>;
+}

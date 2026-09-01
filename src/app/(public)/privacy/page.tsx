@@ -1,0 +1,8 @@
+import type { Metadata } from "next";
+import { Container } from "@/components/shared/container";
+import { PageHero } from "@/components/shared/page-hero";
+
+export const metadata: Metadata = { title: "Privacy", description: "How Stalwart Realtors handles website inquiry information." };
+export default function PrivacyPage() {
+  return <><PageHero eyebrow="Legal" title="Privacy" description="A clear summary of how website inquiry information is handled." current="Privacy" /><section className="bg-soft-cream py-20"><Container className="prose-stalwart max-w-3xl text-sm leading-8 text-charcoal/70"><h2 className="font-heading text-3xl text-charcoal">Information you provide</h2><p>When inquiry forms are active, Stalwart Realtors collects the information you submit, such as your name, contact details, requirement, and preferred site-visit information.</p><h2 className="mt-10 font-heading text-3xl text-charcoal">Purpose</h2><p>The information is used to review and respond to your request, manage follow-up, and maintain an internal record of the conversation. It is not used to make automated decisions or promise an outcome.</p><h2 className="mt-10 font-heading text-3xl text-charcoal">Access and retention</h2><p>Access is restricted to explicitly authorized administrators. Retention and deletion requests will be handled through the verified contact channels published on this website.</p><h2 className="mt-10 font-heading text-3xl text-charcoal">Before launch</h2><p>This summary should be reviewed against the company’s operating jurisdiction and approved business practices before public launch. It does not replace legal advice.</p></Container></section></>;
+}

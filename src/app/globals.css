@@ -1,26 +1,185 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-warm-ivory: #f5f0e6;
+  --color-travertine-beige: #e4d8c5;
+  --color-champagne-gold: #b58a43;
+  --color-charcoal: #272925;
+  --color-deep-olive: #2f3828;
+  --color-soft-cream: #faf7f0;
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-montserrat);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #faf7f0;
+  --foreground: #272925;
+  --header-offset: 8.75rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-offset);
 }
 
 body {
+  min-height: 100vh;
+  overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #b58a43;
+  outline-offset: 3px;
+}
+
+::selection {
+  background: #b58a43;
+  color: #272925;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  translate: 0 -200%;
+  border: 1px solid #b58a43;
+  background: #faf7f0;
+  color: #272925;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: translate 160ms ease;
+}
+
+.skip-link:focus {
+  translate: 0;
+}
+
+.travertine-texture {
+  background-color: #f5f0e6;
+  background-image:
+    radial-gradient(
+      circle at 14% 24%,
+      rgb(181 138 67 / 10%),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 88% 72%,
+      rgb(47 56 40 / 7%),
+      transparent 28%
+    ),
+    linear-gradient(
+      112deg,
+      transparent 0 38%,
+      rgb(181 138 67 / 6%) 39% 40%,
+      transparent 41% 100%
+    );
+}
+
+.architectural-grid {
+  background-image:
+    linear-gradient(rgb(245 240 230 / 8%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(245 240 230 / 8%) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.section-reveal {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
+.form-control {
+  min-height: 3rem;
+  width: 100%;
+  border: 1px solid rgb(47 56 40 / 18%);
+  background: #faf7f0;
+  padding: 0.75rem 0.9rem;
+  color: #272925;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.form-control:focus {
+  border-color: #b58a43;
+  box-shadow: 0 0 0 3px rgb(181 138 67 / 12%);
+}
+
+.form-control::placeholder {
+  color: rgb(39 41 37 / 45%);
+}
+
+.form-control:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.prose-stalwart p + p {
+  margin-top: 1.25rem;
+}
+
+.prose-stalwart ul {
+  margin-top: 1rem;
+  list-style: none;
+}
+
+.prose-stalwart li {
+  position: relative;
+  margin-top: 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.prose-stalwart li::before {
+  position: absolute;
+  top: 0.7em;
+  left: 0;
+  width: 0.4rem;
+  height: 1px;
+  background: #b58a43;
+  content: "";
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-offset: 7.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

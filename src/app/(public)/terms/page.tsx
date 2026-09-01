@@ -1,0 +1,8 @@
+import type { Metadata } from "next";
+import { Container } from "@/components/shared/container";
+import { PageHero } from "@/components/shared/page-hero";
+
+export const metadata: Metadata = { title: "Terms", description: "Website information terms for Stalwart Realtors." };
+export default function TermsPage() {
+  return <><PageHero eyebrow="Legal" title="Website terms" description="Important context for information presented on this website." current="Terms" /><section className="bg-soft-cream py-20"><Container className="prose-stalwart max-w-3xl text-sm leading-8 text-charcoal/70"><h2 className="font-heading text-3xl text-charcoal">Informational purpose</h2><p>Website content is provided for general information and discussion. A project page, inquiry response, or site-visit request does not create a contract, reserve a property, confirm a visit, or guarantee an investment outcome.</p><h2 className="mt-10 font-heading text-3xl text-charcoal">Verification</h2><p>Project details are published only after internal approval, but visitors should independently verify information and obtain appropriate professional advice before making a decision.</p><h2 className="mt-10 font-heading text-3xl text-charcoal">Availability</h2><p>Projects, services, and opportunities may change or become unavailable. Stalwart Realtors may update website content when verified information changes.</p><h2 className="mt-10 font-heading text-3xl text-charcoal">Before launch</h2><p>These terms should be reviewed for the company’s jurisdiction, regulatory obligations, and approved business practices before public launch. They do not replace legal advice.</p></Container></section></>;
+}
