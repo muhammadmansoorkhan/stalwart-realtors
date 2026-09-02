@@ -1,6 +1,7 @@
 import { cache } from "react";
 
 import type { DivisionSlug } from "@/config/site";
+import { fallbackProjects } from "@/lib/data/fallback-projects";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createClient } from "@/lib/supabase/server";
 import {
@@ -18,29 +19,44 @@ const publicServiceColumns = "id,title,slug,division,icon,short_description,deta
 const publicTestimonialColumns = "id,client_name,client_context,quote,approved,verified_at,sort_order,created_at,updated_at";
 const publicSettingsColumns = "id,company_name,business_descriptor,primary_tagline,supporting_statement,company_introduction,mission,vision,phone,whatsapp,email,office_address,business_hours,facebook_url,instagram_url,linkedin_url,map_url,announcement,default_seo_title,default_seo_description,statistics,show_statistics,footer_description,created_at,updated_at";
 
+function isLocalPublicAsset(path: string) {
+  return path.startsWith("/") && !path.startsWith("//");
+}
+
 export async function signProjectMedia(project: Project, includeGallery = false) {
   const supabase = await createClient();
   let coverImageUrl: string | null = null;
   let brochureUrl: string | null = null;
 
   if (project.cover_image_path) {
-    const { data } = await supabase.storage
-      .from("project-media")
-      .createSignedUrl(project.cover_image_path, 3600);
-    coverImageUrl = data?.signedUrl ?? null;
+    if (isLocalPublicAsset(project.cover_image_path)) {
+      coverImageUrl = project.cover_image_path;
+    } else {
+      const { data } = await supabase.storage
+        .from("project-media")
+        .createSignedUrl(project.cover_image_path, 3600);
+      coverImageUrl = data?.signedUrl ?? null;
+    }
   }
 
   if (project.brochure_path) {
-    const { data } = await supabase.storage
-      .from("project-brochures")
-      .createSignedUrl(project.brochure_path, 900, { download: true });
-    brochureUrl = data?.signedUrl ?? null;
+    if (isLocalPublicAsset(project.brochure_path)) {
+      brochureUrl = project.brochure_path;
+    } else {
+      const { data } = await supabase.storage
+        .from("project-brochures")
+        .createSignedUrl(project.brochure_path, 900, { download: true });
+      brochureUrl = data?.signedUrl ?? null;
+    }
   }
 
   let images = project.project_images ?? [];
   if (includeGallery && images.length) {
     images = await Promise.all(
       images.map(async (image: ProjectImage) => {
+        if (isLocalPublicAsset(image.storage_path)) {
+          return { ...image, signed_url: image.storage_path };
+        }
         const { data } = await supabase.storage
           .from("project-media")
           .createSignedUrl(image.storage_path, 3600);
@@ -105,8 +121,19 @@ type ProjectFilters = {
   limit?: number;
 };
 
+function getFallbackPublishedProjects(filters: ProjectFilters = {}) {
+  let projects = fallbackProjects.filter((project) => project.published);
+  if (filters.category) {
+    projects = projects.filter((project) => project.category === filters.category);
+  }
+  if (typeof filters.featured === "boolean") {
+    projects = projects.filter((project) => project.featured === filters.featured);
+  }
+  return filters.limit ? projects.slice(0, filters.limit) : projects;
+}
+
 export async function getPublishedProjects(filters: ProjectFilters = {}) {
-  if (!isSupabaseConfigured()) return [] as Project[];
+  if (!isSupabaseConfigured()) return getFallbackPublishedProjects(filters);
   const supabase = await createClient();
   let query = supabase
     .from("projects")
@@ -125,7 +152,11 @@ export async function getPublishedProjects(filters: ProjectFilters = {}) {
 
 export const getPublishedProjectBySlug = cache(
   async (slug: string): Promise<Project | null> => {
-    if (!isSupabaseConfigured()) return null;
+    if (!isSupabaseConfigured()) {
+      return fallbackProjects.find(
+        (project) => project.published && project.slug === slug,
+      ) ?? null;
+    }
     const supabase = await createClient();
     const { data } = await supabase
       .from("projects")

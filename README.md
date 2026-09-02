@@ -77,7 +77,7 @@ The seed contains only the confirmed company name, descriptor, taglines, and neu
 - Any statistic or testimonial
 - Final jurisdiction-specific privacy policy and terms
 
-The referenced `NPF CIGU Agro Farmhouse` is deliberately not seeded or published because its location, approval, pricing, amenities, ownership, and investment details have not been verified.
+`NPF Cighu Agro Farmhouse` is included from user-supplied promotional material. Its project page identifies pricing, payment, possession, registry/intiqal, distance, affiliation, availability, and investment statements as supplied claims that must be reconfirmed before any decision.
 
 ## Quality checks
 
