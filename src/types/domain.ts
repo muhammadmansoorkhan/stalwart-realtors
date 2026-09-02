@@ -1,4 +1,4 @@
-import type { DivisionSlug } from "@/config/site";
+import { siteConfig, type DivisionSlug } from "@/config/site";
 
 export type ProjectCategory = "real-estate" | "construction" | "development";
 export type ProjectStatus = "upcoming" | "ongoing" | "completed";
@@ -136,9 +136,9 @@ export const fallbackSettings: SiteSettings = {
     "Stalwart Realtors brings real estate, construction, and development together with an emphasis on trust, transparency, considered decisions, and long-term value.",
   mission: "",
   vision: "",
-  phone: null,
-  whatsapp: null,
-  email: null,
+  phone: siteConfig.contact.phone,
+  whatsapp: siteConfig.contact.whatsapp,
+  email: siteConfig.contact.email,
   office_address: null,
   business_hours: null,
   facebook_url: null,

@@ -33,9 +33,10 @@ export const siteConfig = {
     { label: "Development", href: "/development" },
   ],
   contact: {
-    phone: null,
-    whatsapp: null,
-    email: null,
+    phone: "0319 7713784",
+    whatsapp: "+92 319 7713784",
+    email: "info@stalwartrealtors.com",
+    emailRecipient: "mansoortheprogrammer101@gmail.com",
     address: null,
     businessHours: null,
   },

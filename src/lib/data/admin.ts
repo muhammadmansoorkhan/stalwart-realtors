@@ -1,12 +1,14 @@
+import { siteConfig } from "@/config/site";
 import { createClient } from "@/lib/supabase/server";
 import { signProjectMedia } from "@/lib/data/public";
-import type {
-  Inquiry,
-  Project,
-  Service,
-  SiteSettings,
-  SiteVisit,
-  Testimonial,
+import {
+  fallbackSettings,
+  type Inquiry,
+  type Project,
+  type Service,
+  type SiteSettings,
+  type SiteVisit,
+  type Testimonial,
 } from "@/types/domain";
 
 export async function getDashboardData() {
@@ -131,5 +133,13 @@ export async function getAdminSettings() {
     .select("*")
     .limit(1)
     .single();
-  return data as SiteSettings;
+
+  const settings = (data ?? {}) as Partial<SiteSettings>;
+  return {
+    ...fallbackSettings,
+    ...settings,
+    phone: settings.phone?.trim() || siteConfig.contact.phone,
+    whatsapp: settings.whatsapp?.trim() || siteConfig.contact.whatsapp,
+    email: settings.email?.trim() || siteConfig.contact.email,
+  };
 }

@@ -9,7 +9,7 @@ import type { SiteSettings } from "@/types/domain";
 export function SiteFooter({ settings }: { settings: SiteSettings }) {
   const contacts = [
     settings.phone ? { label: settings.phone, href: `tel:${settings.phone.replace(/\s/g, "")}`, icon: Phone } : null,
-    settings.email ? { label: settings.email, href: `mailto:${settings.email}`, icon: Mail } : null,
+    settings.email ? { label: settings.email, href: `mailto:${siteConfig.contact.emailRecipient}`, icon: Mail } : null,
     settings.office_address ? { label: settings.office_address, href: settings.map_url ?? "/contact", icon: MapPin } : null,
   ].filter(Boolean) as { label: string; href: string; icon: typeof Phone }[];
 

@@ -6,6 +6,7 @@ import { SiteVisitForm } from "@/components/public/site-visit-form";
 import { Container } from "@/components/shared/container";
 import { PageHero } from "@/components/shared/page-hero";
 import { SectionHeading } from "@/components/shared/section-heading";
+import { siteConfig } from "@/config/site";
 import { getPublishedProjects, getSiteSettings, getWhatsappUrl } from "@/lib/data/public";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 
@@ -20,7 +21,7 @@ export default async function ContactPage() {
   const contactMethods = [
     settings.phone ? { icon: Phone, label: "Phone", value: settings.phone, href: `tel:${settings.phone.replace(/\s/g, "")}` } : null,
     whatsapp ? { icon: MessageCircle, label: "WhatsApp", value: "Start a conversation", href: whatsapp } : null,
-    settings.email ? { icon: Mail, label: "Email", value: settings.email, href: `mailto:${settings.email}` } : null,
+    settings.email ? { icon: Mail, label: "Email", value: settings.email, href: `mailto:${siteConfig.contact.emailRecipient}` } : null,
     settings.office_address ? { icon: MapPin, label: "Office", value: settings.office_address, href: settings.map_url ?? "#" } : null,
     settings.business_hours ? { icon: Clock, label: "Business hours", value: settings.business_hours, href: null } : null,
   ].filter(Boolean) as { icon: typeof Phone; label: string; value: string; href: string | null }[];

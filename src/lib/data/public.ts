@@ -1,6 +1,6 @@
 import { cache } from "react";
 
-import type { DivisionSlug } from "@/config/site";
+import { siteConfig, type DivisionSlug } from "@/config/site";
 import { fallbackProjects } from "@/lib/data/fallback-projects";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createClient } from "@/lib/supabase/server";
@@ -83,7 +83,15 @@ export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
     .maybeSingle();
 
   if (error || !data) return fallbackSettings;
-  return { ...fallbackSettings, ...(data as Partial<SiteSettings>) };
+
+  const settings = data as Partial<SiteSettings>;
+  return {
+    ...fallbackSettings,
+    ...settings,
+    phone: settings.phone?.trim() || siteConfig.contact.phone,
+    whatsapp: settings.whatsapp?.trim() || siteConfig.contact.whatsapp,
+    email: settings.email?.trim() || siteConfig.contact.email,
+  };
 });
 
 export const getActiveServices = cache(

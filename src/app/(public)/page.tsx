@@ -8,7 +8,7 @@ import { ButtonLink } from "@/components/shared/button-link";
 import { Container } from "@/components/shared/container";
 import { EmptyState } from "@/components/shared/empty-state";
 import { SectionHeading } from "@/components/shared/section-heading";
-import { divisions } from "@/config/site";
+import { divisions, siteConfig } from "@/config/site";
 import { getApprovedTestimonials, getPublishedProjects, getSiteSettings, getWhatsappUrl } from "@/lib/data/public";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 
@@ -153,7 +153,7 @@ export default async function HomePage() {
 
       <section className="section-reveal border-t border-deep-olive/10 bg-warm-ivory py-20 sm:py-28">
         <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <div><SectionHeading eyebrow="Begin a conversation" title="Tell us what you are considering." description="Share your requirement and the team can respond once verified contact channels and the secure lead system are active." />{settings.phone || settings.email ? <div className="mt-8 space-y-3 text-sm">{settings.phone ? <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="block text-deep-olive hover:text-champagne-gold">{settings.phone}</a> : null}{settings.email ? <a href={`mailto:${settings.email}`} className="block text-deep-olive hover:text-champagne-gold">{settings.email}</a> : null}</div> : null}</div>
+          <div><SectionHeading eyebrow="Begin a conversation" title="Tell us what you are considering." description="Share your requirement and the team can respond once verified contact channels and the secure lead system are active." />{settings.phone || settings.email ? <div className="mt-8 space-y-3 text-sm">{settings.phone ? <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="block text-deep-olive hover:text-champagne-gold">{settings.phone}</a> : null}{settings.email ? <a href={`mailto:${siteConfig.contact.emailRecipient}`} className="block text-deep-olive hover:text-champagne-gold">{settings.email}</a> : null}</div> : null}</div>
           <div className="border border-deep-olive/12 bg-soft-cream p-6 sm:p-9"><InquiryForm projects={allProjects} configured={isSupabaseConfigured()} /></div>
         </Container>
       </section>
