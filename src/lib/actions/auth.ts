@@ -22,7 +22,26 @@ export async function loginAction(
 
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) return { error: "The sign-in details could not be verified." };
+  if (error) {
+    console.error("[admin-auth] Supabase sign-in rejected", {
+      code: error.code ?? "unknown",
+      status: error.status ?? "unknown",
+    });
+
+    if (error.code === "email_not_confirmed") {
+      return { error: "Supabase has not confirmed this administrator email yet." };
+    }
+
+    if (error.code === "invalid_credentials") {
+      return { error: "Supabase rejected this email and password combination." };
+    }
+
+    if (error.code === "weak_password") {
+      return { error: "Supabase rejected this password under the current password policy." };
+    }
+
+    return { error: `Supabase sign-in failed (${error.code ?? "unknown"}).` };
+  }
 
   const admin = await getAdminContext();
   if (!admin) {
