@@ -19,11 +19,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = await getPublishedProjectBySlug(slug);
   if (!project) return { title: "Project not found" };
+  const socialImages = project.cover_image_url
+    ? [{ url: project.cover_image_url, alt: project.cover_image_alt ?? project.name }]
+    : [];
   return {
     title: project.name,
     description: project.short_description,
     alternates: { canonical: `/projects/${project.slug}` },
-    openGraph: { title: `${project.name} | Stalwart Realtors`, description: project.short_description, type: "article" },
+    openGraph: {
+      title: `${project.name} | Stalwart Realtors`,
+      description: project.short_description,
+      type: "article",
+      images: socialImages,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.name} | Stalwart Realtors`,
+      description: project.short_description,
+      images: socialImages.map((image) => image.url),
+    },
   };
 }
 

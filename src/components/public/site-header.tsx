@@ -1,4 +1,4 @@
-import { ChevronDown } from "lucide-react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import Link from "next/link";
 
 import { MobileNavigation } from "@/components/public/mobile-navigation";
@@ -9,7 +9,7 @@ import type { SiteSettings } from "@/types/domain";
 
 export function SiteHeader({ settings }: { settings: SiteSettings }) {
   return (
-    <header className="sticky top-0 z-50 border-b border-deep-olive/10 bg-soft-cream/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-deep-olive/10 bg-soft-cream/92 backdrop-blur-md">
       {settings.announcement ? (
         <div className="bg-deep-olive text-soft-cream">
           <Container className="flex min-h-9 items-center justify-center py-2 text-center text-[0.64rem] font-semibold tracking-[0.14em] uppercase sm:text-[0.7rem]">
@@ -18,7 +18,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
         </div>
       ) : (
         <div className="bg-deep-olive text-soft-cream">
-          <Container className="flex min-h-9 items-center justify-between gap-4 py-2 text-[0.63rem] font-semibold tracking-[0.16em] uppercase sm:text-[0.68rem]">
+          <Container className="hidden min-h-9 items-center justify-between gap-4 py-2 text-[0.63rem] font-semibold tracking-[0.16em] uppercase sm:text-[0.68rem]">
             <span>Real Estate · Construction · Development</span>
             <span className="hidden text-travertine-beige sm:inline">{settings.supporting_statement}</span>
           </Container>
@@ -53,8 +53,8 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
           </ul>
         </nav>
 
-        <Link href="/contact#site-visit" className="hidden min-h-11 items-center bg-deep-olive px-5 py-3 text-xs font-bold tracking-[0.08em] text-soft-cream uppercase transition-colors hover:bg-charcoal xl:inline-flex">
-          Book a site visit
+        <Link href="/contact#site-visit" className="hidden min-h-11 items-center gap-2 bg-deep-olive px-5 py-3 text-xs font-bold tracking-[0.08em] text-soft-cream uppercase transition-colors hover:bg-charcoal xl:inline-flex">
+          Book a site visit <ArrowUpRight aria-hidden="true" size={15} />
         </Link>
         <MobileNavigation />
       </Container>

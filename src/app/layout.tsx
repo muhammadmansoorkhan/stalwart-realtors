@@ -36,6 +36,19 @@ export const metadata: Metadata = {
     title: "Stalwart Realtors | Real Estate, Construction & Development",
     description:
       "Building Better Tomorrow, Together through real estate, construction, and development.",
+    images: [
+      {
+        url: "/images/architectural-hero.png",
+        alt: "Stalwart Realtors architectural concept in warm stone",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stalwart Realtors | Real Estate, Construction & Development",
+    description:
+      "Building Better Tomorrow, Together through real estate, construction, and development.",
+    images: ["/images/architectural-hero.png"],
   },
 };
 

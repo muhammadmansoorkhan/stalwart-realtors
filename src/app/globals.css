@@ -14,7 +14,7 @@
 :root {
   --background: #faf7f0;
   --foreground: #272925;
-  --header-offset: 8.75rem;
+  --header-offset: 6.5rem;
 }
 
 * {
@@ -165,7 +165,7 @@ select:focus-visible {
 
 @media (max-width: 767px) {
   :root {
-    --header-offset: 7.5rem;
+    --header-offset: 5.75rem;
   }
 }
 
