@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
+import { getSiteUrl } from "@/lib/site-url";
+
 import "./globals.css";
 
 const montserrat = localFont({
-  src: "./fonts/Montserrat-Variable.ttf",
+  src: "./fonts/Montserrat-Variable.woff2",
   variable: "--font-montserrat",
   weight: "100 900",
   display: "swap",
 });
 
 const playfairDisplay = localFont({
-  src: "./fonts/PlayfairDisplay-Variable.ttf",
+  src: "./fonts/PlayfairDisplay-Variable.woff2",
   variable: "--font-playfair",
   weight: "400 900",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  ),
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: "Stalwart Realtors | Real Estate, Construction & Development",
     template: "%s | Stalwart Realtors",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
       "Building Better Tomorrow, Together through real estate, construction, and development.",
     images: [
       {
-        url: "/images/architectural-hero.png",
+        url: "/images/architectural-hero.webp",
         alt: "Stalwart Realtors architectural concept in warm stone",
       },
     ],
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: "Stalwart Realtors | Real Estate, Construction & Development",
     description:
       "Building Better Tomorrow, Together through real estate, construction, and development.",
-    images: ["/images/architectural-hero.png"],
+    images: ["/images/architectural-hero.webp"],
   },
 };
 

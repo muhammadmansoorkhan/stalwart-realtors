@@ -10,9 +10,20 @@ const optionalUrl = z
   .union([z.literal(""), z.url("Enter a complete URL beginning with https://.")])
   .transform((value) => value || null);
 
+const phoneNumber = z
+  .string()
+  .trim()
+  .min(7, "Enter a valid phone number.")
+  .max(32, "Enter a valid phone number.")
+  .refine((value) => /^[+()\d\s-]+$/.test(value), "Enter a valid phone number.")
+  .refine((value) => {
+    const digitCount = value.replace(/\D/g, "").length;
+    return digitCount >= 7 && digitCount <= 15;
+  }, "Enter a valid phone number.");
+
 export const inquirySchema = z.object({
   fullName: z.string().trim().min(2, "Enter your full name.").max(120),
-  phone: z.string().trim().min(7, "Enter a valid phone number.").max(32),
+  phone: phoneNumber,
   email: optionalEmail,
   inquiryType: z.enum([
     "real-estate",
@@ -31,10 +42,15 @@ export const inquirySchema = z.object({
 
 export const siteVisitSchema = z.object({
   fullName: z.string().trim().min(2, "Enter your full name.").max(120),
-  phone: z.string().trim().min(7, "Enter a valid phone number.").max(32),
+  phone: phoneNumber,
   email: optionalEmail,
   projectId: z.uuid("Select a published project."),
-  preferredDate: z.iso.date("Choose a valid date."),
+  preferredDate: z
+    .iso.date("Choose a valid date.")
+    .refine(
+      (value) => value >= new Date().toISOString().slice(0, 10),
+      "Choose today or a future date.",
+    ),
   preferredTime: z.string().trim().min(2, "Choose a preferred time.").max(60),
   visitorCount: z
     .union([z.literal(""), z.coerce.number().int().min(1).max(30)])

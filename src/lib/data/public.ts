@@ -2,6 +2,7 @@ import { cache } from "react";
 
 import { siteConfig, type DivisionSlug } from "@/config/site";
 import { fallbackProjects } from "@/lib/data/fallback-projects";
+import { getFallbackServices } from "@/lib/data/fallback-services";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createClient } from "@/lib/supabase/server";
 import {
@@ -96,18 +97,24 @@ export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
 
 export const getActiveServices = cache(
   async (division?: DivisionSlug): Promise<Service[]> => {
-    if (!isSupabaseConfigured()) return [];
+    if (!isSupabaseConfigured()) return getFallbackServices(division);
     const supabase = await createClient();
-    let query = supabase
+    const { data, error } = await supabase
       .from("services")
       .select(publicServiceColumns)
       .eq("is_active", true)
       .order("sort_order")
       .order("title");
 
-    if (division) query = query.eq("division", division);
-    const { data } = await query;
-    return (data ?? []) as Service[];
+    // The supplied brand material confirms these six core capabilities. Use
+    // them only while the database has no active services; as soon as an
+    // administrator publishes service records, Supabase becomes authoritative.
+    if (error || !data?.length) return getFallbackServices(division);
+
+    const services = data as Service[];
+    return division
+      ? services.filter((service) => service.division === division)
+      : services;
   },
 );
 

@@ -43,5 +43,7 @@ Use the public Supabase URL and anon/publishable key described in the root
 `.env.example`. This application does not require a service-role key, and one
 must never be exposed to the browser.
 
-The migration deliberately seeds no project claims, contact details, services,
-statistics, or testimonials that have not been verified by the business.
+The initial migration deliberately seeds no unverified project claims, contact
+details, statistics, or testimonials. The follow-up confirmed-services
+migration publishes only the six capabilities supplied in the business's
+approved brand material.

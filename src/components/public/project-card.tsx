@@ -26,8 +26,8 @@ export function ProjectCard({ project }: { project: Project }) {
         <h3 className="mt-3 font-heading text-2xl font-semibold text-charcoal sm:text-3xl">
           <Link href={`/projects/${project.slug}`} className="transition-colors hover:text-deep-olive">{project.name}</Link>
         </h3>
-        {project.location ? <p className="mt-3 flex items-center gap-2 text-xs text-charcoal/55"><MapPin aria-hidden="true" size={14} />{project.location}</p> : null}
-        <p className="mt-4 line-clamp-3 text-sm leading-7 text-charcoal/65">{project.short_description}</p>
+        {project.location ? <p className="mt-3 flex items-center gap-2 text-xs text-body-copy-muted"><MapPin aria-hidden="true" size={14} />{project.location}</p> : null}
+        <p className="mt-4 line-clamp-3 text-sm leading-7 text-body-copy-muted">{project.short_description}</p>
         <Link href={`/projects/${project.slug}`} className="mt-6 inline-flex items-center gap-2 self-start text-xs font-bold tracking-[0.1em] text-deep-olive uppercase transition-colors hover:text-champagne-gold">
           View project <ArrowUpRight aria-hidden="true" size={15} />
         </Link>

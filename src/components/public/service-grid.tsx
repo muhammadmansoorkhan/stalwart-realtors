@@ -11,8 +11,8 @@ export function ServiceGrid({ services }: { services: Service[] }) {
           <article key={service.id} className="bg-soft-cream p-7 sm:p-9">
             <Icon aria-hidden="true" className="text-champagne-gold" size={28} strokeWidth={1.5} />
             <h3 className="mt-5 font-heading text-2xl font-semibold text-charcoal">{service.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-charcoal/65">{service.short_description}</p>
-            {service.detailed_description ? <p className="mt-4 border-t border-deep-olive/10 pt-4 text-sm leading-7 text-charcoal/55">{service.detailed_description}</p> : null}
+            <p className="mt-3 text-sm leading-7 text-body-copy-muted">{service.short_description}</p>
+            {service.detailed_description ? <p className="mt-4 border-t border-deep-olive/10 pt-4 text-sm leading-7 text-body-copy-muted">{service.detailed_description}</p> : null}
           </article>
         );
       })}

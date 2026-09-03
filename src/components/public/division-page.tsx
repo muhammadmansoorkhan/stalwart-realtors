@@ -15,12 +15,12 @@ export function DivisionPage({ division, services, projects }: { division: Divis
       <section className="section-reveal bg-soft-cream py-20 sm:py-28">
         <Container className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
           <SectionHeading eyebrow="Our approach" title={`A considered ${division.name.toLowerCase()} perspective.`} />
-          <p className="border-t border-deep-olive/15 pt-7 text-base leading-8 text-charcoal/68 sm:text-lg sm:leading-9">{division.overview}</p>
+          <p className="border-t border-deep-olive/15 pt-7 text-base leading-8 text-body-copy sm:text-lg sm:leading-9">{division.overview}</p>
         </Container>
       </section>
       <section className="section-reveal border-y border-deep-olive/10 bg-warm-ivory py-20 sm:py-28">
         <Container>
-          <SectionHeading eyebrow="Confirmed services" title="Capabilities published when ready." description="The administrator can enable each service only after its availability and description are confirmed." />
+          <SectionHeading eyebrow="What we do" title={`${division.name} expertise, delivered with purpose.`} description="Explore the confirmed capabilities Stalwart Realtors brings to every client relationship." />
           {services.length ? <div className="mt-12"><ServiceGrid services={services} /></div> : <EmptyState className="mt-12" title="Services awaiting confirmation" description="Detailed services will appear here after the business confirms which capabilities are active." />}
         </Container>
       </section>

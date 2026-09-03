@@ -7,6 +7,8 @@
   --color-charcoal: #272925;
   --color-deep-olive: #2f3828;
   --color-soft-cream: #faf7f0;
+  --color-body-copy: #555750;
+  --color-body-copy-muted: #62645d;
   --font-heading: var(--font-playfair);
   --font-body: var(--font-montserrat);
 }

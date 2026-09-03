@@ -59,7 +59,7 @@ export default async function HomePage() {
   return (
     <>
       <section className="relative isolate min-h-[calc(100svh-5rem)] overflow-hidden bg-deep-olive text-soft-cream">
-        <Image src="/images/architectural-hero.png" alt="Conceptual contemporary architecture in warm stone; not a Stalwart Realtors project" fill sizes="100vw" className="-z-20 object-cover object-[62%_center]" priority />
+        <Image src="/images/architectural-hero.webp" alt="Conceptual contemporary architecture in warm stone; not a Stalwart Realtors project" fill sizes="100vw" className="-z-20 object-cover object-[62%_center]" priority />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(39,41,37,0.96)_0%,rgba(47,56,40,0.9)_34%,rgba(47,56,40,0.48)_66%,rgba(39,41,37,0.28)_100%)]" />
         <Container className="flex min-h-[calc(100svh-5rem)] items-center py-20">
           <div className="max-w-3xl [&>p:first-child]:!text-champagne-gold">
@@ -76,7 +76,7 @@ export default async function HomePage() {
       <section className="section-reveal bg-soft-cream py-20 sm:py-28">
         <Container className="grid items-stretch gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:grid-rows-[auto_1fr] lg:gap-x-20 lg:gap-y-8">
           <SectionHeading eyebrow="One considered brand" title="Three disciplines, one clear commitment." className="lg:col-start-1 lg:row-start-1" />
-          <div className="border-t border-deep-olive/15 pt-7 text-base leading-8 text-charcoal/68 sm:text-lg sm:leading-9 lg:col-start-1 lg:row-start-2">
+          <div className="border-t border-deep-olive/15 pt-7 text-base leading-8 text-body-copy sm:text-lg sm:leading-9 lg:col-start-1 lg:row-start-2">
             <p>Stalwart Realtors works across real estate, construction, and development. That breadth creates a more connected view of property requirements—from the first conversation through to a carefully assessed opportunity or project.</p>
             <p className="mt-5">The approach is grounded in trust, transparent communication, strategic thinking, and the pursuit of long-term value.</p>
             <ButtonLink href="/about" variant="text" className="mt-7">About Stalwart Realtors</ButtonLink>
@@ -105,7 +105,7 @@ export default async function HomePage() {
                     <Icon aria-hidden="true" size={29} strokeWidth={1.35} />
                   </span>
                   <h2 className="mt-8 font-heading text-3xl font-semibold text-charcoal transition-colors group-hover:text-soft-cream group-focus-within:text-soft-cream sm:text-4xl">{division.name}</h2>
-                  <p className="mt-5 min-h-20 text-sm leading-7 text-charcoal/65 transition-colors group-hover:text-warm-ivory/70 group-focus-within:text-warm-ivory/70">{division.summary}</p>
+                  <p className="mt-5 min-h-20 text-sm leading-7 text-body-copy-muted transition-colors group-hover:text-warm-ivory/70 group-focus-within:text-warm-ivory/70">{division.summary}</p>
                   <ButtonLink href={`/${division.slug}`} variant="text" className="mt-6 group-hover:text-champagne-gold group-focus-within:text-champagne-gold">Explore {division.name}</ButtonLink>
                 </article>
               );
@@ -135,7 +135,7 @@ export default async function HomePage() {
         <Container>
           <SectionHeading eyebrow="Working process" title="A considered path from first conversation to next step." description="A flexible process that keeps requirements, information, and next actions visible." />
           <ol className="mt-14 grid divide-y divide-deep-olive/12 border-y border-deep-olive/12 md:grid-cols-5 md:divide-x md:divide-y-0">
-            {process.map((item, index) => <li key={item.title} className="px-5 py-7 sm:px-6 sm:py-8"><span className="font-heading text-4xl text-champagne-gold/75">{String(index + 1).padStart(2, "0")}</span><h3 className="mt-5 font-heading text-2xl leading-tight text-charcoal">{item.title}</h3><p className="mt-4 text-sm leading-7 text-charcoal/62">{item.description}</p></li>)}
+            {process.map((item, index) => <li key={item.title} className="px-5 py-7 sm:px-6 sm:py-8"><span className="font-heading text-4xl text-champagne-gold/75">{String(index + 1).padStart(2, "0")}</span><h3 className="mt-5 font-heading text-2xl leading-tight text-charcoal">{item.title}</h3><p className="mt-4 text-sm leading-7 text-body-copy-muted">{item.description}</p></li>)}
           </ol>
         </Container>
       </section>

@@ -55,7 +55,7 @@ export function SectionHeading({
           className={cn(
             "mt-6 max-w-2xl text-base leading-8 sm:text-lg",
             align === "center" && "mx-auto",
-            isDark ? "text-warm-ivory/75" : "text-charcoal/70",
+            isDark ? "text-warm-ivory/75" : "text-body-copy",
           )}
         >
           {description}
